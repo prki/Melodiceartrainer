@@ -1,27 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-    <!--
-    <div id="music-player">
-      <p>Click me to play muzak.</p>
-      <button id="playMusicButton" v-on:click="playMusic">Play Music</button>
-    </div>
-    -->
+    <!--<img alt="Vue logo" src="./assets/logo.png" />-->
+    <button v-on:click="changeQuizParametersVisibility">Show parameters.</button>
+    <QuizParameters v-show="showQuizParameters" />
     <MusicGenerator v-on:music-generated="logReturn" />
+    <QuizController />
   </div>
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
 import MusicGenerator from "./components/MusicGenerator.vue";
+import QuizParameters from "./components/QuizParameters.vue";
+import QuizController from "./components/QuizController.vue";
 
 import * as Tone from "tone";
 
 export default {
   name: "App",
+  data: function() {
+    return {
+      showQuizParameters: false
+    };
+  },
   components: {
-    MusicGenerator
+    MusicGenerator,
+    QuizParameters,
+    QuizController
   },
   methods: {
     playMusic: function() {
@@ -44,6 +48,10 @@ export default {
 
     logReturn: function(valueReturned) {
       console.log(valueReturned);
+    },
+
+    changeQuizParametersVisibility: function() {
+      this.showQuizParameters = !this.showQuizParameters;
     }
   }
 };
