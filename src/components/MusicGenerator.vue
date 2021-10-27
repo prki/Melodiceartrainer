@@ -73,14 +73,21 @@ export default {
     },
 
     returnData: function() {
-      this.$emit("music-generated", this.CHROMATIC_SCALE);
-      //const majorScale = this.generateMajorScale();
+      const majorScale = this.generateMajorScale();
+      let tones = new Array(8);
+      let lengths = ["8n", "8n", "8n", "8n", "8n", "8n", "8n", "8n"];
+      for (let i = 0; i < 8; i++) {
+        let randIdx = Math.floor(Math.random() * majorScale.length);
+        tones[i] = majorScale[randIdx];
+        tones[i] += "4";
+      }
       const melody = {
-        tones: ["C4", "D4", "E4"],
-        lengths: ["8n", "8n", "8n"]
+        tones: tones,
+        lengths: lengths
       };
 
       this.$store.commit("addMelody", melody);
+      this.$emit("music-generated", this.CHROMATIC_SCALE);
     }
   }
 };
