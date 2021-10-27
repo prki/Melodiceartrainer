@@ -1,14 +1,30 @@
 <template>
   <div id="app">
-    <!--<img alt="Vue logo" src="./assets/logo.png" />-->
-    <button v-on:click="changeQuizParametersVisibility">Show parameters.</button>
-    <QuizParameters v-show="showQuizParameters" />
-    <MusicGenerator v-on:music-generated="playGeneratedMusic" />
-    <QuizController />
-    <div id="melody-history">
-      <ul>
-        <li v-for="melody in this.$store.state.generatedMelodies" :key="melody.id">{{ melody }}</li>
-      </ul>
+    <div class="md-toolbar-row">
+      <p class="md-title">Toolbar navbar//Melodic ear trainer</p>
+    </div>
+    <div class="md-layout">
+      <div class="md-layout-item">
+        <md-card>
+          <md-card-header>
+            <div class="md-title">Melodic ear trainer</div>
+          </md-card-header>
+          <md-button
+            class="md-raised md-primary"
+            v-on:click="changeQuizParametersVisibility"
+          >Show parameters.</md-button>
+          <QuizParameters v-show="showQuizParameters" />
+          <MusicGenerator v-on:music-generated="playGeneratedMusic" />
+          <QuizController />
+        </md-card>
+      </div>
+      <div class="md-layout-item md-size-20 history-bar">
+        <md-content class="md-scrollbar">
+          <ul>
+            <li v-for="melody in this.$store.state.generatedMelodies" :key="melody.id">{{ melody }}</li>
+          </ul>
+        </md-content>
+      </div>
     </div>
   </div>
 </template>
@@ -88,6 +104,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /*margin-top: 60px;*/
+  margin: auto;
+}
+
+.history-bar {
+  overflow: auto;
+  max-height: 600px;
 }
 </style>

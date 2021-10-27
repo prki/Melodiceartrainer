@@ -1,6 +1,6 @@
 <template>
   <div class="music-generator">
-    <button v-on:click="returnData">Generate music</button>
+    <md-button class="md-raised md-primary" v-on:click="returnData">Generate music</md-button>
   </div>
 </template>
 
@@ -55,7 +55,7 @@ export default {
      * @param {string} key The root note to generate key from. If not provided, generates starting from a random note.
      */
     generateMajorScale: function(key) {
-      if (arguments.length == 0) {
+      if (arguments.length === 0) {
         key = this.generateRandomNote();
       }
       const startingIndex = this.CHROMATIC_SCALE.findIndex(k => k === key);

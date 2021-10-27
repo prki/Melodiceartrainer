@@ -1,5 +1,7 @@
 <template>
-  <div id="QuizController">This is a placeholder for quiz controller.</div>
+  <div id="QuizController">
+    <md-card>Melody #i.</md-card>
+  </div>
 </template>
 
 <script>

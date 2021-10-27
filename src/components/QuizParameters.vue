@@ -1,15 +1,13 @@
 <template>
   <div id="quizform">
-    <input type="radio" id="use-major-scale" value="Major scale" v-model="scale" />
-    <label for="use-major-scale">Use major scale (random key).</label>
+    <md-radio id="use-major-scale" value="Major scale" v-model="scale">Use major scale (random key).</md-radio>
     <br />
-    <input
+    <md-checkbox
       type="checkbox"
       id="use-quarter-notes"
       value="Quarter notes"
       v-model="possibleToneLength"
-    />
-    <label for="use-quarter-notes">Generate quarter notes.</label>
+    >Use quarter notes.</md-checkbox>
     <button v-on:click="logDebug">Log debug values</button>
   </div>
 </template>
