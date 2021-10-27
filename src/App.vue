@@ -3,8 +3,13 @@
     <!--<img alt="Vue logo" src="./assets/logo.png" />-->
     <button v-on:click="changeQuizParametersVisibility">Show parameters.</button>
     <QuizParameters v-show="showQuizParameters" />
-    <MusicGenerator v-on:music-generated="logReturn" />
+    <MusicGenerator v-on:music-generated="playGeneratedMusic" />
     <QuizController />
+    <div id="melody-history">
+      <ul>
+        <li v-for="melody in this.$store.state.generatedMelodies" :key="melody.id">{{ melody }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -48,6 +53,25 @@ export default {
 
     logReturn: function(valueReturned) {
       console.log(valueReturned);
+    },
+
+    playGeneratedMusic: function() {
+      const generatedMelodies = this.$store.state.generatedMelodies;
+      const lastMelody = generatedMelodies[generatedMelodies.length - 1];
+      console.log(lastMelody);
+
+      const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+      const now = Tone.now();
+      let j = 0;
+      for (let i = 0; i < lastMelody["tones"].length; i++) {
+        console.log("Adding tone", lastMelody["tones"][i]);
+        synth.triggerAttackRelease(
+          lastMelody["tones"][i],
+          lastMelody["lengths"][i],
+          now + j
+        );
+        j += 0.5;
+      }
     },
 
     changeQuizParametersVisibility: function() {

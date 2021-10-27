@@ -74,8 +74,13 @@ export default {
 
     returnData: function() {
       this.$emit("music-generated", this.CHROMATIC_SCALE);
-      const majorScale = this.generateMajorScale();
-      console.log(majorScale);
+      //const majorScale = this.generateMajorScale();
+      const melody = {
+        tones: ["C4", "D4", "E4"],
+        lengths: ["8n", "8n", "8n"]
+      };
+
+      this.$store.commit("addMelody", melody);
     }
   }
 };
