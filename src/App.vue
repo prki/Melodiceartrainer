@@ -1,14 +1,13 @@
 <template>
   <div id="app">
-    <div class="md-toolbar-row">
-      <p class="md-title">Toolbar navbar//Melodic ear trainer</p>
+    <div class="md-toolbar-row md-elevation-4 main-header">
+      <h1 class="md-title">Toolbar navbar//Melodic ear trainer</h1>
     </div>
     <div class="md-layout">
+      <!--<div class="md-layout-item md-size-20"></div>-->
       <div class="md-layout-item">
-        <md-card>
-          <md-card-header>
-            <div class="md-title">Melodic ear trainer</div>
-          </md-card-header>
+        <md-content>
+          <div class="md-title">Melodic ear trainer</div>
           <md-button
             class="md-raised md-primary"
             v-on:click="changeQuizParametersVisibility"
@@ -16,11 +15,11 @@
           <QuizParameters v-show="showQuizParameters" />
           <MusicGenerator v-on:music-generated="playGeneratedMusic" />
           <QuizController />
-        </md-card>
+        </md-content>
       </div>
-      <div class="md-layout-item md-size-20 history-bar">
-        <md-content class="md-scrollbar">
-          <ul>
+      <div class="md-layout-item md-size-20">
+        <md-content class="md-scrollbar history-bar">
+          <ul class="ul-history">
             <li v-for="melody in this.$store.state.generatedMelodies" :key="melody.id">{{ melody }}</li>
           </ul>
         </md-content>
@@ -99,17 +98,28 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  /*margin-top: 60px;*/
+  /* color: #2c3e50;*/
+  margin-top: 60px;
   margin: auto;
+}
+
+.main-header {
+  /*background-color: #f5f5f5;*/
+  margin-bottom: 20px;
+  color: #ffffff;
 }
 
 .history-bar {
   overflow: auto;
-  max-height: 600px;
+  max-height: 80vh;
+  min-height: 80vh;
+}
+
+.ul-history {
+  margin-top: 0px;
 }
 </style>

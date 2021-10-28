@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
-import 'vue-material/dist/theme/default.css'
+import 'vue-material/dist/theme/default-dark.css'
 import App from './App.vue'
 
 Vue.config.productionTip = false
