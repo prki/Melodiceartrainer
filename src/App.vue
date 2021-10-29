@@ -3,35 +3,32 @@
     <div class="md-toolbar-row md-elevation-4 main-header">
       <h1 class="md-title">Toolbar navbar//Melodic ear trainer</h1>
     </div>
-    <div class="md-layout">
-      <!--<div class="md-layout-item md-size-20"></div>-->
-      <div class="md-layout-item">
-        <md-content>
-          <div class="md-title">Melodic ear trainer</div>
-          <md-button
-            class="md-raised md-primary"
-            v-on:click="changeQuizParametersVisibility"
-          >Show parameters.</md-button>
-          <QuizParameters v-show="showQuizParameters" />
-          <MusicGenerator v-on:music-generated="playGeneratedMusic" />
-          <QuizController />
-        </md-content>
-      </div>
-      <div class="md-layout-item md-size-20">
-        <md-content class="md-scrollbar history-bar">
-          <ul class="ul-history">
-            <li v-for="melody in this.$store.state.generatedMelodies" :key="melody.id">{{ melody }}</li>
-          </ul>
-        </md-content>
+    <div class="container">
+      <div class="md-layout main">
+        <!--<div class="md-layout-item md-size-20"></div>-->
+        <div class="md-layout-item md-size-70 quiz">
+          <md-content>
+            <div class="md-title">Melodic ear trainer</div>
+            <md-button
+              class="md-raised md-primary"
+              v-on:click="changeQuizParametersVisibility"
+            >Show parameters.</md-button>
+            <QuizParameters v-show="showQuizParameters" />
+            <QuizController v-on:music-generated="playGeneratedMusic" />
+          </md-content>
+        </div>
+        <div class="md-layout-item md-size-30">
+          <MelodyHistory />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import MusicGenerator from "./components/MusicGenerator.vue";
 import QuizParameters from "./components/QuizParameters.vue";
 import QuizController from "./components/QuizController.vue";
+import MelodyHistory from "./components/MelodyHistory.vue";
 
 import * as Tone from "tone";
 
@@ -43,9 +40,9 @@ export default {
     };
   },
   components: {
-    MusicGenerator,
     QuizParameters,
-    QuizController
+    QuizController,
+    MelodyHistory
   },
   methods: {
     playMusic: function() {
@@ -103,8 +100,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   /* color: #2c3e50;*/
-  margin-top: 60px;
-  margin: auto;
+  /*margin-top: 60px;*/
 }
 
 .main-header {
@@ -113,13 +109,17 @@ export default {
   color: #ffffff;
 }
 
-.history-bar {
-  overflow: auto;
-  max-height: 80vh;
-  min-height: 80vh;
+.main {
+  margin: 0 auto;
 }
 
-.ul-history {
-  margin-top: 0px;
+.quiz {
+  min-width: 600px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>

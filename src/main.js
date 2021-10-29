@@ -16,6 +16,11 @@ const store = new Vuex.Store({
   mutations: {
     addMelody(state, melody) {
       state.generatedMelodies.push(melody);
+    },
+
+    markLastAnswer(state, answer) {
+      const len = state.generatedMelodies.length;
+      state.generatedMelodies[len - 1]["answer"] = answer;
     }
   }
 })
