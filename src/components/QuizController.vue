@@ -29,6 +29,7 @@ export default {
     correctPercentage: 0,
     quizStarted: false
   }),
+
   methods: {
     replayMelody: () => {
       alert("Not implemented.");

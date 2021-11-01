@@ -70,13 +70,13 @@ export default {
     playGeneratedMusic: function() {
       const generatedMelodies = this.$store.state.generatedMelodies;
       const lastMelody = generatedMelodies[generatedMelodies.length - 1];
-      console.log(lastMelody);
+      //console.log(lastMelody);
 
       const synth = new Tone.PolySynth(Tone.Synth).toDestination();
       const now = Tone.now();
       let j = 0;
       for (let i = 0; i < lastMelody["tones"].length; i++) {
-        console.log("Adding tone", lastMelody["tones"][i]);
+        //console.log("Adding tone", lastMelody["tones"][i]);
         synth.triggerAttackRelease(
           lastMelody["tones"][i],
           lastMelody["lengths"][i],

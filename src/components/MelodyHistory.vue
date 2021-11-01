@@ -7,37 +7,28 @@
         v-for="(melody, idx) in this.$store.state.generatedMelodies"
         :key="melody.id"
       >
-        <span
-          class="md-list-item-text"
-          v-bind:class="highlightAnswer(melody['answer'])"
-        >Melody #{{ idx }}</span>
+        <MelodyItem v-bind:correctAnswer="melody['answer']" v-bind:questionId="idx" />
       </md-list-item>
     </md-list>
   </md-content>
 </template>
 
 <script>
+import MelodyItem from "./MelodyItem.vue";
+
 export default {
-  /*  computed: {
-    highlightAnswer: function(answer) {
-      console.log(answer);
-      return {
-        "highlight-correct": 1
-      };
-    }
+  components: {
+    MelodyItem
   },
-*/
+
+  /** [TODO] push melody into history
+   *
+   */
+  data: function() {},
 
   methods: {
     displayHistoryDetails: function(idx) {
       alert(idx.toString());
-    },
-
-    highlightAnswer: function(answer) {
-      if (answer === true) {
-        return "highlight-correct";
-      }
-      return "highlight-wrong";
     }
   }
 };
