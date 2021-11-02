@@ -2,13 +2,12 @@
   <md-content class="md-scrollbar history-bar">
     <h1 class="md-title">Melody history</h1>
     <md-list class="ul-history md-dense">
-      <md-list-item
-        @click="displayHistoryDetails(idx)"
-        v-for="(melody, idx) in this.$store.state.generatedMelodies"
+      <MelodyItem
+        v-for="(melody, idx) in this.$store.state.pastMelodies"
         :key="melody.id"
-      >
-        <MelodyItem v-bind:correctAnswer="melody['answer']" v-bind:questionId="idx" />
-      </md-list-item>
+        v-bind:correctAnswer="melody['answer']"
+        v-bind:questionId="idx"
+      />
     </md-list>
   </md-content>
 </template>
@@ -24,11 +23,16 @@ export default {
   /** [TODO] push melody into history
    *
    */
-  data: function() {},
+  data: function() {
+    return {
+      melodiesTested: ["foo"]
+    };
+  },
 
   methods: {
     displayHistoryDetails: function(idx) {
       alert(idx.toString());
+      this.melodiesTested.push("abc");
     }
   }
 };
@@ -43,13 +47,5 @@ export default {
 
 .ul-history {
   margin-top: 0px;
-}
-
-.highlight-correct {
-  background-color: #00ff00;
-}
-
-.highlight-wrong {
-  background-color: #ff0000;
 }
 </style>

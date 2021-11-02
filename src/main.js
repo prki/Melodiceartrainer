@@ -11,16 +11,20 @@ Vue.use(VueMaterial)
 
 const store = new Vuex.Store({
   state: {
-    generatedMelodies: [],
+    pastMelodies: [],
+    currentMelody: null,
   },
   mutations: {
-    addMelody(state, melody) {
-      state.generatedMelodies.push(melody);
+    setCurrentMelody(state, melody) {
+      if (state.currentMelody !== null) {
+        state.pastMelodies.push(state.currentMelody);
+      }
+      state.currentMelody = melody;
+      //state.generatedMelodies.push(melody);
     },
 
     markLastAnswer(state, answer) {
-      const len = state.generatedMelodies.length;
-      state.generatedMelodies[len - 1]["answer"] = answer;
+      state.currentMelody['answer'] = answer;
     }
   }
 })

@@ -73,7 +73,7 @@ export default {
         lengths: lengths
       };
 
-      this.$store.commit("addMelody", melody);
+      this.$store.commit("setCurrentMelody", melody);
       this.$emit("music-generated", this.CHROMATIC_SCALE);
     }
   }
