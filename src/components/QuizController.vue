@@ -1,12 +1,12 @@
 <template>
   <div id="QuizController">
-    <md-card v-show="!quizStarted">
+    <md-content v-show="!quizStarted">
       <md-button class="md-raised md-primary" v-on:click="startQuiz">Start quiz</md-button>
-    </md-card>
-    <md-card v-show="quizStarted">
-      <md-card-header class="md-title">Generated melody number {{ totalQuestions }}.</md-card-header>
+    </md-content>
+    <md-content v-show="quizStarted">
+      <h1 class="md-title">Generated melody number {{ totalQuestions + 1 }}.</h1>
       <md-list class="answers-list">
-        <md-list-item>Total melodies played: {{ totalQuestions }}</md-list-item>
+        <md-list-item>Total melodies played: {{ totalQuestions + 1 }}</md-list-item>
         <md-list-item>Correct answers: {{ correctAnswers }}</md-list-item>
       </md-list>
       <md-button class="md-raised md-primary" v-on:click="replayMelody">Replay melody</md-button>
@@ -15,7 +15,7 @@
 
       <md-progress-bar md-mode="determinate" :md-value="correctPercentage"></md-progress-bar>
       <p class="md-body-1">Score in percentage: {{ Math.round(correctPercentage * 10) / 10 }}</p>
-    </md-card>
+    </md-content>
   </div>
 </template>
 

@@ -1,9 +1,20 @@
 <template>
-  <md-list-item v-bind:class="highlightAnswer" class="history-item">
-    <md-button>
-      <span>Melody #{{ questionId }} {{ answerValue }}</span>
-    </md-button>
-  </md-list-item>
+  <div>
+    <md-dialog :md-active.sync="showDetail">
+      <md-dialog-title>Melody detail view</md-dialog-title>
+      <p class="md-body-1">Melody played: {{ melodyPrettyPrint }}</p>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click="replayMelody()">Replay melody</md-button>
+        <md-button class="md-primary" @click="showDetail = false">Close</md-button>
+      </md-dialog-actions>
+    </md-dialog>
+
+    <md-list-item v-bind:class="highlightAnswer" class="history-item">
+      <md-button @click="showDetail = true">
+        <span>Melody #{{ questionId }} {{ answerValue }}</span>
+      </md-button>
+    </md-list-item>
+  </div>
 </template>
 
 <script>
@@ -20,8 +31,16 @@ export default {
         return "Correct";
       }
       return "Wrong";
+    },
+
+    melodyPrettyPrint: function() {
+      return this.$store.state.pastMelodies[this.questionId];
     }
   },
+
+  data: () => ({
+    showDetail: false
+  }),
 
   props: ["correctAnswer", "questionId"]
 };

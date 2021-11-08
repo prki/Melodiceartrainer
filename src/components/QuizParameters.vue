@@ -8,7 +8,6 @@
       value="Quarter notes"
       v-model="possibleToneLength"
     >Use quarter notes.</md-checkbox>
-    <button v-on:click="logDebug">Log debug values</button>
   </div>
 </template>
 

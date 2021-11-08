@@ -6,9 +6,9 @@
     <div class="container">
       <div class="md-layout main">
         <!--<div class="md-layout-item md-size-20"></div>-->
-        <div class="md-layout-item md-size-70 quiz">
+        <div class="md-layout-item quiz">
           <md-content>
-            <div class="md-title">Melodic ear trainer</div>
+            <h1 class="md-headline">Melodic ear trainer</h1>
             <md-button
               class="md-raised md-primary"
               v-on:click="changeQuizParametersVisibility"
@@ -17,7 +17,7 @@
             <QuizController v-on:music-generated="playGeneratedMusic" />
           </md-content>
         </div>
-        <div class="md-layout-item md-size-30">
+        <div class="md-layout-item">
           <MelodyHistory />
         </div>
       </div>
